@@ -45,7 +45,7 @@ function origen {
         #Eliminamos ROOTFS para evitar errores.
 
         lstdisps=$(lsblk -r --noheadings  -p -d -o NAME | grep -v $ROOTDEV)
-        disp=$(echo "$lstdisps" salir | uiselect 'Seleccione el dispositivo de ORIGEN')
+        disp=$(uiselect 'Seleccione el dispositivo de ORIGEN' "$lstdisps" salir)
 
         [[ "$disp" == "salir" ]] && terminar 1
 
@@ -82,7 +82,7 @@ function destino {
         # Se eliminan el dispositivo de ORIGEN y el ROOTFS del listado de posibles
         # destinos para evitar catástrofes
         lstdisps=$(lsblk -r --noheadings -p -d -o NAME |egrep -v "$ROOTDEV|$ORIGENDEV")
-        disp=$(echo "$lstdisps" salir | uiselect 'Seleccione un dispositivo DESTINO')
+        disp=$(uiselect 'Seleccione un dispositivo DESTINO'  "$lstdisps" salir)
         
         [[ "$disp" == "salir" ]] && terminar 1
 

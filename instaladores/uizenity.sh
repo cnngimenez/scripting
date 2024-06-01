@@ -16,7 +16,7 @@ function uimsg {
     echo "$1"
 }
 
-function addfalse {
+function addfalse {    
     for i in $(cat) ; do
         echo 'FALSE'
         echo "$i"
@@ -25,7 +25,7 @@ function addfalse {
 
 # echo -e "data\ndata\n..." | uiselect TEXT
 function uiselect {
-    addfalse | zenity --list --radiolist --text="$1" --column '' --column 'Opción' 2> /dev/null
+    echo "${@:2}" | addfalse | zenity --list --radiolist --text="$1" --column '' --column 'Opción' 2> /dev/null
 }
 
 # uiyn TEXT
